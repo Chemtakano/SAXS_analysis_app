@@ -22,7 +22,7 @@ def trans_cor(LogSheet, ICdata, qr=(0.025, 1.8), Dpath='', Spath=''):
             IC2_sol=IC_df.at[solfile, 'IC2']
 
             df=fi.read_chi(Dpath+'/'+datafile+'.chi')
-            df['Isol']=fi.read_chi(solfile)['I']
+            df['Isol']=fi.read_chi(Dpath+'/'+solfile+'.chi')['I']
             df['I_t']=df['I']/IC2_sam
             df['Isol_t']=df['Isol']/IC2_sol
             df['exI']=df['I_t']-df['Isol_t']

@@ -15,7 +15,8 @@ col_1=[
     [sg.FileBrowse('Browse', file_types=(('IC2file', '*.txt'),)), sg.InputText(key='IC2path')],
     [sg.Text('保存先のフォルダ')],
     [sg.FolderBrowse('Browse'), sg.InputText(key='s_folderpath')],
-    [sg.Button('解析を実行。', key='btn_doit')]
+    [sg.Button('解析を実行。', key='btn_doit')],
+    [sg.Radio('4 m', group_id='camera_length', key='-4m-', default=True), sg.Radio('1 m', group_id='camera_length', key='-1m-', default=False)],
 ]
 
 col_2=[]
@@ -53,7 +54,11 @@ while True:
         if value['IC2path']=='':
             sg.popup('イオンチャンバーのテキストファイルが選択されていません！', title='エラー')
         else:
-            tm.trans_cor(value['logpath'], value['IC2path'], (0.025, 1.8), value['d_folderpath'], value['s_folderpath'])
+            if value['-4m-']==True:
+                qmin, qmax=0.025, 1.8
+            else:
+                qmin, qmax=0.5, 9
+            tm.trans_cor(value['Logpath'], value['IC2path'], (qmin, qmax), value['d_folderpath'], value['s_folderpath'])
 
         
         
