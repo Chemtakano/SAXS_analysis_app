@@ -118,6 +118,7 @@ while True:
         plot()
     if event=='btn_save':
         fig.savefig(value['savepath']+'/'+value['savename'])
+        sg.popup('画像を保存しました。', title='')
         
         
 window.close()

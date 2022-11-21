@@ -59,6 +59,7 @@ while True:
             else:
                 qmin, qmax=0.5, 9
             tm.trans_cor(value['Logpath'], value['IC2path'], (qmin, qmax), value['d_folderpath'], value['s_folderpath'])
+            sg.popup('解析が終了しました。', title='成功')
 
         
         
