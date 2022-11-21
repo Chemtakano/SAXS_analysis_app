@@ -3,8 +3,13 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import file_import as fi
 import matplotlib.pyplot as plt
 import os
+import infomation as info
 
-    
+#menubar
+menubar_def=[
+    ['about this app', ['how to use this app (ENG)', 'how to use this app (JPN)']],
+    ['creator',['creator']]
+]    
 
 #data
 col_1=[
@@ -30,6 +35,7 @@ col_3=[
 ]
 
 layout=[
+    [sg.MenuBar(menubar_def)],
     [col_1],
     [sg.Column(col_2), sg.Column(col_3)]
 ]
@@ -119,7 +125,13 @@ while True:
     if event=='btn_save':
         fig.savefig(value['savepath']+'/'+value['savename'])
         sg.popup('画像を保存しました。', title='')
-        
+
+    if event=='how to use this app (JPN)':
+        sg.popup(info.HowTo4ABS('JPN'), title='アプリの使い方')
+    if event=='how to use this app (ENG)':
+        sg.popup(info.HowTo4ABS('ENG'), title='How to use')
+    if event=='creator':
+        sg.popup(info.creator(), title='creator')   
         
 window.close()
 

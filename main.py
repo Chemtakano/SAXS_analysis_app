@@ -5,7 +5,9 @@ import infomation as info
 
 #menu bar
 
-menubar_def=[['about this app', ['how to use this app (ENG)', 'how to use this app (JPN)']]
+menubar_def=[
+    ['about this app', ['how to use this app (ENG)', 'how to use this app (JPN)']],
+    ['creator',['creator']]
 ]
     
 
@@ -63,10 +65,11 @@ while True:
             sg.popup('解析が終了しました。', title='成功')
 
     if event=='how to use this app (JPN)':
-        sg.popup(info.HowTo('JPN'), title='アプリの使い方')
+        sg.popup(info.HowTo4CAL('JPN'), title='アプリの使い方')
     if event=='how to use this app (ENG)':
-        sg.popup(info.HowTo('ENG'), title='アプリの使い方')
-
+        sg.popup(info.HowTo4CAL('ENG'), title='How to use')
+    if event=='creator':
+        sg.popup(info.creator(), title='creator')  
         
         
 window.close()
