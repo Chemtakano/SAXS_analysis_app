@@ -1,8 +1,12 @@
 import PySimpleGUI as sg
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import t_module as tm
+import infomation as info
 
+#menu bar
 
+menubar_def=[['about this app', ['how to use this app (ENG)', 'how to use this app (JPN)']]
+]
     
 
 #data
@@ -15,17 +19,14 @@ col_1=[
     [sg.FileBrowse('Browse', file_types=(('IC2file', '*.txt'),)), sg.InputText(key='IC2path')],
     [sg.Text('保存先のフォルダ')],
     [sg.FolderBrowse('Browse'), sg.InputText(key='s_folderpath')],
-    [sg.Button('解析を実行。', key='btn_doit')],
+    [sg.Button('解析を実行', key='btn_doit', button_color=('white', 'teal'))],
     [sg.Radio('4 m', group_id='camera_length', key='-4m-', default=True), sg.Radio('1 m', group_id='camera_length', key='-1m-', default=False)],
 ]
 
-col_2=[]
-
-col_3=[]
 
 layout=[
-    [col_1],
-    [sg.Column(col_2), sg.Column(col_3)]
+    [sg.MenuBar(menubar_def)],
+    [col_1]
 ]
 
 
@@ -57,9 +58,14 @@ while True:
             if value['-4m-']==True:
                 qmin, qmax=0.025, 1.8
             else:
-                qmin, qmax=0.5, 9
+                qmin, qmax=0.5, 8
             tm.trans_cor(value['Logpath'], value['IC2path'], (qmin, qmax), value['d_folderpath'], value['s_folderpath'])
             sg.popup('解析が終了しました。', title='成功')
+
+    if event=='how to use this app (JPN)':
+        sg.popup(info.HowTo('JPN'), title='アプリの使い方')
+    if event=='how to use this app (ENG)':
+        sg.popup(info.HowTo('ENG'), title='アプリの使い方')
 
         
         
