@@ -20,7 +20,7 @@ col_1=[
     [sg.Text('空キャピラリーのchiファイル')],
     [sg.FileBrowse('Browse', file_types=(('空キャピラリーのchiファイル', '*.chi'),)), sg.InputText(key='capipath')],
     [sg.Button('補正定数を算出する。', key='btn_F')],
-    [sg.Radio('4 m', group_id='camera_length', key='-4m-', default=True), sg.Radio('1 m', group_id='camera_length', key='-1m-', default=False)]
+    [sg.Radio('SAXS(4m)', group_id='camera_length', key='-SAXS-', default=True), sg.Radio('WAXS', group_id='camera_length', key='-1m-', default=False)]
 ]
 
 col_2=[
@@ -83,7 +83,7 @@ def plot():
     IC2_w=ICfile.at[w_filename, 'IC2']
     IC2_c=ICfile.at[c_filename, 'IC2']
 
-    if value['-4m-']==True:
+    if value['-SAXS-']==True:
         qmin, qmax=1, 1.5
     else:
         qmin, qmax=1, 3

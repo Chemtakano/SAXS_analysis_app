@@ -22,7 +22,7 @@ col_1=[
     [sg.Text('保存先のフォルダ')],
     [sg.FolderBrowse('Browse'), sg.InputText(key='s_folderpath')],
     [sg.Button('解析を実行', key='btn_doit', button_color=('white', 'teal'))],
-    [sg.Radio('4 m', group_id='camera_length', key='-4m-', default=True), sg.Radio('1 m', group_id='camera_length', key='-1m-', default=False)],
+    [sg.Radio('SAXS(4m)', group_id='camera_length', key='-SAXS-', default=True), sg.Radio('WAXS', group_id='camera_length', key='-WAXS-', default=False)],
 ]
 
 
@@ -57,8 +57,10 @@ while True:
         if value['IC2path']=='':
             sg.popup('イオンチャンバーのテキストファイルが選択されていません！', title='エラー')
         else:
-            if value['-4m-']==True:
+            if value['-SAXS-']==True:
                 qmin, qmax=0.025, 1.8
+            elif value['-WAXS-']==True:
+                qmin, qmax=0.35, 15
             else:
                 qmin, qmax=0.5, 8
             tm.trans_cor(value['Logpath'], value['IC2path'], (qmin, qmax), value['d_folderpath'], value['s_folderpath'])
